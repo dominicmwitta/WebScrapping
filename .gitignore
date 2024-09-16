@@ -1,3 +1,5 @@
 */
 *.ipynb
 *.txt
+*.log
+dese_market_monitor2.py
