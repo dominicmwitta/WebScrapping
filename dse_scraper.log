@@ -1,0 +1,11 @@
+2024-09-15 23:32:32,988 - INFO - Table starting positions [1, 51, 61, 71, 127]
+2024-09-15 23:32:33,009 - INFO - Table starting positions [1, 51, 61, 71, 127]
+2024-09-15 23:32:33,023 - INFO - Table starting positions [2, 54, 65, 76, 133]
+2024-09-15 23:32:33,040 - INFO - Table starting positions [1, 51, 61, 71, 127]
+2024-09-15 23:32:33,056 - INFO - Table starting positions [1, 51, 61, 71, 127]
+2024-09-15 23:32:33,129 - INFO - Data updated
+2024-09-15 23:32:33,139 - INFO - Successfully wrote equity_market.csv
+2024-09-15 23:32:33,141 - INFO - Successfully wrote govt_bonds.csv
+2024-09-15 23:32:33,143 - INFO - Successfully wrote corporate_bonds.csv
+2024-09-15 23:32:33,151 - INFO - Successfully wrote key_market_indicators.csv
+2024-09-15 23:32:33,155 - INFO - Successfully wrote exchange_rate.csv
