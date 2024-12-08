@@ -15,14 +15,14 @@ def download_pdf(url, filename):
             f.write(response.content)
             print(f"downloaded {filename}")
     else:
-        print(f"Failed to download {filename}")
+        print(f"Failed to download {filename} with response code {response.status_code}")
 
 base_url = "https://dse.co.tz/"
 response = requests.get(base_url)
 
-if response.status_code !=200:
-    print(f"Failed to fetch website with response code: {response.status_code}")
-    exit()
+# if response.status_code !=200:
+#     print(f"Failed to fetch website with response code: {response.status_code}")
+#     exit()
 
 
 # Parse html content
@@ -121,6 +121,7 @@ def convert_to_numeric(df, columns=None):
         # Replace all non-numeric characters and convert to numeric
         df[col] = pd.to_numeric(df[col].str.replace(r',|\s', '', regex=True), errors='coerce') 
     return df
+
 #  cut data into separate tables
 pattern_daily = rf'(?i)^(?:\d{{1,2}}\W*)?{months}\W*\d{{2,4}}'
 # tables = {}
@@ -163,13 +164,23 @@ dfs_all[1]
 
 
 # split, conjoined cols
+# Ti get the first value
 def split_string(string, part=1):
-    if string is not None:
-        result = re.split(r'(?<=\.\d{2})',string)
-        if part == 1:
-            return result[0]
-        elif part==2:
-            return result[1]
+    # Check if the string has two dots
+    numdots = len(re.findall(r'\.',string))
+    # Part ==1 means we take the first part of the string
+    if numdots ==2:
+        if string is not None:
+            result = re.split(r'(?<=\.\d{2})',string)
+            if result and part == 1:
+                return result[0]
+            if result and part==2:
+                return result[1]
+    else:
+        return 0
+
+# Example  
+split_string('200.0',2)
 
 # Example  
 # split_string('4.466789.04',1)
@@ -208,6 +219,7 @@ for i,_ in enumerate(dfs_all):
         if not all(dfs_all[i][col].isna()):
             dfs_all[i][col] = pd.to_numeric(dfs_all[i][col], errors='coerce')
             # print(dfs_all[i].dtypes)
+
 import pickle
 
 
@@ -220,6 +232,7 @@ else:
 # common_indices = existing[0].index[existing[0].index.isin(dfs_all[0].index)]
 # First, create the set of common indices, to identify duplicate dates
 existing_update = []
+
 for i, _ in enumerate(existing):
     common_indices = set(existing[i].index) & set(dfs_all[i].index)
     # Now, remove these common indices from existing

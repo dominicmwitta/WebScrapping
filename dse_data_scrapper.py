@@ -44,7 +44,7 @@ def scrape_and_append():
 
     # File to store the cumulative data
     path = 'daily_prices'
-    os.makedirs(path)
+    os.makedirs(path,exist_ok=True)
     cumulative_file = os.path.join(path,'dse_daily_data.csv')
 
     # Check if the cumulative file exists
